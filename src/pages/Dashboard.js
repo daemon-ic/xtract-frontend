@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useUserInfo } from "../hooks/useUserInfo";
 import { Button, InputBase } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { makeCopyOf, capFirstLetter } from "../misc/utils";
+import { makeCopyOf, capFirstLetter, sleep } from "../misc/utils";
 import { axiosUpdateUser } from "../api/userCalls";
-import { axiosScrape } from "../api/pptrCalls";
+import { axiosDetect, axiosScrape } from "../api/pptrCalls";
 import { AUTH_TOKEN, QUIZLET_DEFAULT_TARGET } from "../misc/constants";
 const { uuid } = require("uuidv4");
 
@@ -61,6 +61,8 @@ const Dashboard = () => {
   const { user, getUser } = useUserInfo();
   const [formInfo, setFormInfo] = useState(blank);
   const [extractedData, setExtractedData] = useState({});
+  const currentAttemptsRef = useRef(null);
+  currentAttemptsRef.current = 20;
 
   const updateForm = (e, key) => {
     const formInfo_copy = makeCopyOf(formInfo);
@@ -92,13 +94,37 @@ const Dashboard = () => {
 
   const initSiteScrape = async (url, target) => {
     try {
-      // showLoadingToast();
-      const result = await axiosScrape(url, target);
-      console.log(result);
-      // toast.dismiss();
+      showLoadingToast();
+      const uid = await axiosScrape(url, target);
+      // TODO: maybe i can save the data so its faster the second time
+      const data = await autoDetection(uid);
+      toast.dismiss();
+      await sleep(500);
+      // TODO: make a data deletion
+      confirm("Would you like to download the data?");
     } catch (error) {
       console.log("extraction failed...", error);
     }
+  };
+
+  const autoDetection = async (uid) => {
+    console.log("AUTO DETECTION FIRED...");
+    const ITERATION_TIME = 5000;
+    let data = null;
+
+    while (!data && currentAttemptsRef.current > 0) {
+      try {
+        data = await axiosDetect(uid);
+        console.log("DATA: ", data);
+        console.log("ATTEMPTS LEFT: ", currentAttemptsRef.current);
+      } catch (error) {
+        console.log("No data yet...");
+      }
+      currentAttemptsRef.current -= 1;
+      await sleep(ITERATION_TIME);
+    }
+    console.log("AUTO DETECTION COMPLETE!");
+    return data;
   };
 
   // try/catch, check undefines
@@ -119,13 +145,13 @@ const Dashboard = () => {
   };
 
   const showLoadingToast = () =>
-    toast.loading("Xtracting...", {
+    toast.loading(`Xtracting... ${20 - currentAttemptsRef.current}/20`, {
       position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
       progress: undefined,
       theme: "dark",
     });

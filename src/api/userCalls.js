@@ -2,7 +2,9 @@ import axios from "axios";
 import { AUTH_TOKEN, DOMAIN } from "../misc/constants";
 
 export const axiosSignUp = async (payload) => {
+  console.log(DOMAIN + "/user/signup");
   try {
+    console.log(DOMAIN);
     const response = await axios.post(DOMAIN + "/user/signup", payload);
     console.log(response.data);
 
