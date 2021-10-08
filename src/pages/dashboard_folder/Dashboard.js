@@ -144,7 +144,8 @@ const Dashboard = () => {
         const url =
           "https://firebasestorage.googleapis.com/v0/b/xtract-bf4dd.appspot.com/o/" +
           name +
-          ".zip?alt=media";
+          ".zip?alt=media&t=" +
+          Date.now();
         console.log("url: ", url);
         const link = document.createElement("a");
         link.href = url;
