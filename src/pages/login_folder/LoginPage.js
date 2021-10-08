@@ -48,7 +48,11 @@ const styles = {
     paddingRight: "20px",
     marginBottom: "20px",
   },
-  smallText: { cursor: "pointer", fontSize: "14px" },
+  smallText: {
+    cursor: "pointer",
+    fontSize: "14px",
+    textDecoration: "underline",
+  },
 };
 
 const blankForm = {
@@ -107,7 +111,7 @@ const LoginPage = () => {
               paddingBottom: "0px",
             }}
           >
-            Xtract
+            Xtract.
           </h1>
           <p
             style={{
@@ -116,7 +120,7 @@ const LoginPage = () => {
               paddingBottom: "30px",
             }}
           >
-            Web Scraping Utility
+            Online Media Scraper
           </p>
         </div>
 

@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --toastify-color-progress-dark: rgb(140, 140, 140);
 }
 
 code {

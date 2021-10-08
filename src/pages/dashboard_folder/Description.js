@@ -15,9 +15,10 @@ export const Description = ({ name }) => {
         {name ? <h1>Hello, {capFirstLetter(name)}.</h1> : <h1>Loading...</h1>}
 
         <p>
-          Welcome to Xtract. Here you can extract website data with the press of
-          a button. This app is designed to pull from Quizlet by default. You
-          can also pull from any site by entering a query selection.
+          Welcome to Xtract. Here you can extract data from any website on the
+          internet* with the press of a button. Choose from several extraction
+          modes to specify the data you're looking for, and then they will be
+          saved for future use.
         </p>
       </div>
     </div>

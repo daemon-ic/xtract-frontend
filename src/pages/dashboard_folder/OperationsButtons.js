@@ -44,9 +44,10 @@ export const OperationsButtons = ({ sites, initSiteScrape, deleteSite }) => {
           flexWrap: "wrap",
         }}
       >
-        <h3>Operations</h3>
+        <h3>Extractions</h3>
         <p>
-          A list of your created operations. Select one to begin extracting.
+          A list of your previous extractions. Select one to re-run the
+          operation.
         </p>
       </div>
       {sites.map((site) => (

@@ -26,6 +26,7 @@ export const Dropdown = ({ inputMode, setInputMode }) => {
         </MenuItem>
         <MenuItem value={"Images"}>Images</MenuItem>
         <MenuItem value={"Quizlet"}>Quizlet</MenuItem>
+        <MenuItem value={"Developer"}>Developer</MenuItem>
         {/* <MenuItem value={"Class"}>Class</MenuItem>
         <MenuItem value={"Id"}>Id</MenuItem>
         <MenuItem value={"Tag"}>Tag</MenuItem> */}

@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
 }
 .navbar {
   position: fixed;
@@ -10,7 +12,8 @@
   width: 100vw;
   height: 50px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main-container {
@@ -31,7 +34,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 40%;
+    width: 45%;
     min-width: 350px;
     height: auto;
 
@@ -44,10 +47,11 @@
     min-width: 350px;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    width: 60%;
+    align-items: flex-end;
+    width: 55%;
 
     @media #{$media-tablet} {
+      align-items: center;
       width: 100%;
     }
   }
@@ -57,7 +61,7 @@
   border-radius: 15px;
   background-color: #f0f0f0;
   display: flex;
-  width: 70%;
+  width: 90%;
 
   &.description {
     margin-top: 50px;
@@ -80,9 +84,17 @@
     padding-top: 20px;
     margin-top: 50px;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 70%;
     min-width: 350px;
+
+    height: 70vh;
+    overflow: scroll;
+
+    @media #{$media-tablet} {
+      justify-content: center;
+      height: auto;
+    }
   }
 }

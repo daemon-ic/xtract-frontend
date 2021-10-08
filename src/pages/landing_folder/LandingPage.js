@@ -1,31 +1,31 @@
 const LandingPage = () => {
   return (
     <div className="full-container">
-      <div className="navbar-landing">nav</div>
+      {/* <div className="navbar-landing">nav</div> */}
       <div className="hero-section">
         <div className="hero-container">
           <div className="hero-box left top">
             <h1
               style={{
-                paddingLeft: "2%",
                 color: "#e8e8e8",
                 fontSize: "calc(12vw + 40px)",
                 padding: "0",
                 margin: "0",
+                paddingLeft: "2%",
               }}
             >
               Xtract.
             </h1>
             <div
               style={{
-                paddingLeft: "4%",
                 color: "#e8e8e8",
                 fontSize: "20px",
                 padding: "0",
                 marginTop: "-20px",
+                paddingLeft: "4%",
               }}
             >
-              an online web scraping utility
+              an online media scraping utility
             </div>
           </div>
           <div className="hero-box right">
@@ -56,7 +56,7 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <div className="footer-section">Bottom</div>
+      {/* <div className="footer-section">Bottom</div> */}
     </div>
   );
 };

@@ -3,6 +3,21 @@ export const DOMAIN = process.env.REACT_APP_API_URL;
 export const QUIZLET_DEFAULT_TARGET = ".TermText, .notranslate, .lang-en";
 
 export const MODE_SETTINGS = {
+  Developer: {
+    NAME: {
+      placeholder: "Enter a name for the operation",
+      disable: false,
+    },
+    URL: {
+      placeholder: "Enter URL to extract",
+      disable: false,
+    },
+
+    TARGET: {
+      placeholder: "querySelectorAll(...)",
+      disable: false,
+    },
+  },
   "Select mode": {
     NAME: {
       placeholder: "N/A",

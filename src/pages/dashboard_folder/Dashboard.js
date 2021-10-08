@@ -64,7 +64,9 @@ const Dashboard = () => {
 
     // option for manual mode
 
-    formInfo_copy = modifySelector(formInfo_copy, inputMode);
+    if (inputMode !== "Developer") {
+      formInfo_copy = modifySelector(formInfo_copy, inputMode);
+    }
     console.log("FINAL FORM: ", formInfo_copy);
 
     user_copy.sites.unshift({
@@ -73,6 +75,7 @@ const Dashboard = () => {
       url: formInfo_copy.url,
       target: formInfo_copy.target,
     });
+    initSiteScrape(formInfo_copy.url, formInfo_copy.target, formInfo_copy.name);
     await axiosUpdateUser(user_copy._id, user_copy);
     getUser();
     setFormInfo(blank);
@@ -205,6 +208,16 @@ const Dashboard = () => {
   return (
     <div className="full-contianer">
       <div className="navbar">
+        <div
+          style={{
+            marginLeft: "50px",
+            fontSize: "40px",
+            fontWeight: "800",
+            color: "white",
+          }}
+        >
+          Xtract.
+        </div>
         <Button style={styles.logoutButton} onClick={handleLogout}>
           Logout
         </Button>

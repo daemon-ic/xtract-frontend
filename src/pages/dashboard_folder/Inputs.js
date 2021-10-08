@@ -87,7 +87,7 @@ export const Inputs = ({
       />
 
       <Button style={styles.button} variant="standard" onClick={handleSubmit}>
-        Create
+        Xtract + Save
       </Button>
     </div>
   );

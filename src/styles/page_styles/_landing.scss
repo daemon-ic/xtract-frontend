@@ -2,22 +2,20 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  background-color: black;
+  background-color: $black;
 }
 
 .navbar-landing {
   position: fixed;
   z-index: 99;
-  background-color: black;
+  background-color: $black;
   width: 100vw;
   height: 60px;
-  display: flex;
-  justify-content: flex-end;
 }
 
 .hero-section {
-  padding-top: 60px;
-  background-color: rgb(14, 14, 14);
+  // padding-top: 60px;
+  background-color: $black;
   height: 100vh;
   width: 100vw;
 
@@ -40,7 +38,7 @@
   height: 100%;
 
   &.left {
-    background-color: rgb(18, 18, 18);
+    background-color: $black;
     width: 70%;
     min-width: 350px;
     display: flex;
@@ -69,7 +67,7 @@
   &.right {
     color: $off-white;
     font-size: 15px;
-    background-color: rgb(18, 18, 18);
+    background-color: $black;
     width: 30%;
     min-width: 100px;
     align-items: center;
@@ -88,7 +86,7 @@
 }
 
 .footer-section {
-  background-color: black;
+  background-color: $black;
   height: 50vh;
   width: 100vw;
 }
