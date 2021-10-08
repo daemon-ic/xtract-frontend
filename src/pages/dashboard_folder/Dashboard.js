@@ -113,7 +113,9 @@ const Dashboard = () => {
       setAttempts(20);
       currentAttemptsRef.current = 20;
       toast.update(toastRef.current, {
-        render: `Xtracting... ${20 - currentAttemptsRef.current}/20`,
+        render: `Xtracting... Attempt ${
+          20 - currentAttemptsRef.current
+        } of 20...`,
         progress: 4900 / 5000,
       });
       setDisableOperation((currState) => (currState = false));
@@ -178,12 +180,16 @@ const Dashboard = () => {
       currentAttemptsRef.current = currentAttemptsRef.current - 1;
       setAttempts((prevState) => (prevState -= 1));
       toast.update(toastRef.current, {
-        render: `Xtracting... ${20 - currentAttemptsRef.current}/20`,
+        render: `Xtracting... Attempt ${
+          20 - currentAttemptsRef.current
+        } of 20...`,
         progress: 1,
       });
       await sleepInterval(5000, 100, (progress) => {
         toast.update(toastRef.current, {
-          render: `Xtracting... ${20 - currentAttemptsRef.current}/20`,
+          render: `Xtracting... Attempt ${
+            20 - currentAttemptsRef.current
+          } of 20...`,
           progress: progress,
         });
       });
