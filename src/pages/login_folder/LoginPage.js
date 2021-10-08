@@ -1,8 +1,8 @@
 import { Paper, InputBase, TextField, Button } from "@mui/material";
 import { useState } from "react";
-import { useUserInfo } from "../hooks/useUserInfo";
-import { axiosSignUp, axiosLogIn } from "../api/userCalls";
-import { makeCopyOf } from "../misc/utils";
+import { useUserInfo } from "../../hooks/useUserInfo";
+import { axiosSignUp, axiosLogIn } from "../../api/userCalls";
+import { makeCopyOf } from "../../misc/utils";
 
 const styles = {
   paper: {
@@ -12,7 +12,7 @@ const styles = {
     justifyContent: "flex-end",
     alignItems: "center",
     flexDirection: "column",
-    width: "380px",
+    width: "350px",
   },
   inputContainer: {
     borderRadius: "15px",
@@ -24,11 +24,11 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    width: "85%",
+    width: "90%",
   },
   inputTitle: {
     marginBottom: "50px",
-    fontSize: "25px",
+    fontSize: "22px",
   },
   input: {
     paddingLeft: "30px",
@@ -85,22 +85,40 @@ const LoginPage = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "grey",
+        backgroundColor: "#2b2b2b",
         height: "100vh",
         width: "100vw",
       }}
     >
       <Paper style={styles.paper}>
-        <h1
+        <div
           style={{
-            color: "white",
-            fontSize: "60px",
-            paddingTop: "20px",
-            paddingBottom: "30px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          Xtract
-        </h1>
+          <h1
+            style={{
+              color: "white",
+              fontSize: "60px",
+              paddingTop: "20px",
+              paddingBottom: "0px",
+            }}
+          >
+            Xtract
+          </h1>
+          <p
+            style={{
+              color: "white",
+              marginTop: "-10px",
+              paddingBottom: "30px",
+            }}
+          >
+            Web Scraping Utility
+          </p>
+        </div>
 
         <div style={styles.inputContainer}>
           {!hasAccount ? (

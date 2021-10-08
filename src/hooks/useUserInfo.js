@@ -25,7 +25,7 @@ export const useUserInfo = () => {
       history.push("/");
     } else {
       console.log("LOGGED IN");
-      if (window.location.pathname === "/") history.push("/dashboard");
+      if (window.location.pathname !== "/dashboard") history.push("/dashboard");
       const idFromToken = JSON.parse(localStorage.getItem(AUTH_TOKEN))["_id"];
       const currentUser = await axiosGetUser(idFromToken);
       setUser(currentUser);

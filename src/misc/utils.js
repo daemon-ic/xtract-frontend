@@ -9,3 +9,27 @@ export const capFirstLetter = (string) => {
 export const sleep = (milliseconds) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
+
+export const sleepInterval = (
+  timeout = 5000,
+  increment = 100,
+  callback = () => {}
+) => {
+  return new Promise((resolve) => {
+    let interval;
+    let total = 0;
+    interval = setInterval(() => {
+      if (total >= timeout) {
+        if (interval) {
+          clearInterval(interval);
+          interval = false;
+        }
+
+        resolve();
+      }
+      total += increment;
+      const progress = (timeout - total) / timeout;
+      callback(progress);
+    }, increment);
+  });
+};
