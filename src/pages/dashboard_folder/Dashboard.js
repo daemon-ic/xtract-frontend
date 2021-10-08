@@ -193,16 +193,19 @@ const Dashboard = () => {
   };
 
   const showLoadingToast = () =>
-    (toastRef.current = toast.loading(`Xtracting... ${20 - attempts}/20`, {
-      position: "bottom-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: false,
-      draggable: false,
-      progress: 1,
-      theme: "dark",
-    }));
+    (toastRef.current = toast.loading(
+      `Xtracting... Attempt ${20 - attempts} of 20...`,
+      {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: 1,
+        theme: "dark",
+      }
+    ));
 
   if (!user) return <h1>Loading...</h1>;
   return (
