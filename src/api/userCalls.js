@@ -3,12 +3,27 @@ import { AUTH_TOKEN, DOMAIN } from "../misc/constants";
 
 export const axiosSignUp = async (payload) => {
   console.log(DOMAIN + "/user/signup");
+
+  if (payload.name === "" || payload.email === "" || payload.password === "") {
+    return "INCOMPLETE_FORM";
+  }
+
+  if (
+    !payload.email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )
+  ) {
+    return "INVALID_EMAIL";
+  }
+
+  if (payload.password.length < 9) return "SHORT_PASSWORD";
+
   try {
     console.log(DOMAIN);
     const response = await axios.post(DOMAIN + "/user/signup", payload);
     console.log(response.data);
 
-    if (!response.data._id) return;
+    if (!response.data._id) return response.data.error;
     localStorage.setItem(AUTH_TOKEN, JSON.stringify(response.data));
   } catch (error) {
     console.log("Axios Sign Up Failed... ", error);
@@ -17,10 +32,11 @@ export const axiosSignUp = async (payload) => {
 
 export const axiosLogIn = async (payload) => {
   try {
+    console.log(DOMAIN);
     const response = await axios.post(DOMAIN + "/user/login", payload);
     console.log(response.data);
 
-    if (!response.data._id) return;
+    if (!response.data._id) return response.data.error;
     localStorage.setItem(AUTH_TOKEN, JSON.stringify(response.data));
   } catch (error) {
     console.log("Axios Login Failed... ", error);

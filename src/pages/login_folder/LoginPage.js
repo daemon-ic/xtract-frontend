@@ -27,8 +27,15 @@ const styles = {
     width: "90%",
   },
   inputTitle: {
-    marginBottom: "50px",
+    marginBottom: "10px",
     fontSize: "22px",
+  },
+  error: {
+    fontSize: "15px",
+    color: "red",
+    marginBottom: "15px",
+    width: "80%",
+    textAlign: "center",
   },
   input: {
     paddingLeft: "30px",
@@ -61,6 +68,16 @@ const blankForm = {
   password: "",
 };
 
+const ERROR = {
+  EMAIL_IN_USE: "This email is already in use",
+  CANT_CREATE_USER: "There was an error creating this user",
+  USER_DOES_NOT_EXIST: "This user does not exist",
+  INCORRECT_PASSWORD: "Incorrect password, please try again",
+  INCOMPLETE_FORM: "Please fill out all of the fields below",
+  INVALID_EMAIL: "Please enter a valid email",
+  SHORT_PASSWORD: "Your password needs to have at least 8 characters",
+};
+
 // NOTES: better to put object into a use state, to avoid conflicts with objects/arrays
 // or make deep copy of the object/array before init state with it
 const LoginPage = () => {
@@ -68,6 +85,7 @@ const LoginPage = () => {
 
   const [hasAccount, setHasAccount] = useState(true);
   const [formInfo, setFormInfo] = useState(blankForm);
+  const [errorCode, setErrorCode] = useState("");
 
   const updateForm = (e) => {
     const formInfo_copy = makeCopyOf(formInfo);
@@ -78,9 +96,15 @@ const LoginPage = () => {
   // NOTES: pass strings to handle submit, them make an if statement to determind function
   const handleSubmit = async (callback) => {
     console.log(formInfo);
-    await callback(formInfo);
+    const result = await callback(formInfo);
+    if (result) setErrorCode(result);
     setFormInfo(blankForm);
     getUser();
+  };
+
+  const changeForm = () => {
+    setHasAccount(!hasAccount);
+    setErrorCode("");
   };
 
   return (
@@ -130,6 +154,7 @@ const LoginPage = () => {
           ) : (
             <h3 style={styles.inputTitle}> Welcome Back</h3>
           )}
+          {errorCode && <p style={styles.error}>{ERROR[errorCode]}</p>}
           {!hasAccount && (
             <InputBase
               placeholder="Full Name"
@@ -175,21 +200,11 @@ const LoginPage = () => {
           )}
 
           {hasAccount ? (
-            <div
-              style={styles.smallText}
-              onClick={() => {
-                setHasAccount(!hasAccount);
-              }}
-            >
+            <div style={styles.smallText} onClick={changeForm}>
               Click here to sign up
             </div>
           ) : (
-            <div
-              style={styles.smallText}
-              onClick={() => {
-                setHasAccount(!hasAccount);
-              }}
-            >
+            <div style={styles.smallText} onClick={changeForm}>
               Click here to login
             </div>
           )}
